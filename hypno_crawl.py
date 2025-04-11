@@ -16,9 +16,10 @@ for i in range(5):
         soup[i] = BeautifulSoup(resp[i].text, 'html.parser')
     except requests.exceptions.SSLError as e:
         print(f"SSL 错误: {e}, URL: page{i}.html")
-for i in range(1,5):
+for i in range(1, 5):
     with open(f'hypno{i}.html', 'r') as f:
-        links_with_video = BeautifulSoup(f.read(), 'html.parser').find_all('a', href=re.compile(r'video.*html$'))
+        links_with_video = BeautifulSoup(f.read(), 'html.parser').find_all(
+            'a', href=re.compile(r'video.*html$'))
     for link in links_with_video:
         try:
             url = link['href']  # 获取 href 属性值
